@@ -12,6 +12,8 @@
     "@adonisjs/ace": "^6.0.0",
     "@adonisjs/core": "^5.0.0-preview-rc",
     "@adonisjs/fold": "^6.0.0",
+    "@adonisjs/lucid": "^8.1.0",
+    "pg": "^8.1.0",
     "proxy-addr": "^2.0.6",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19"
@@ -27,6 +29,7 @@
     "eslint-plugin-import": "^2.20.2",
     "pino-pretty": "^4.0.0",
     "prettier": "^2.0.5",
+    "sqlite3": "^4.2.0",
     "typescript": "^3.9.2",
     "youch": "^2.0.10",
     "youch-terminal": "^1.0.0"
