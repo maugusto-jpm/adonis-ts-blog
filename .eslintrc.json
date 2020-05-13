@@ -18,7 +18,6 @@
     "jest": true
   },
   "rules": {
-    "curly": ["error", "multi"],
     "max-len": ["error", 100, 2, {
       "ignoreUrls": true,
       "ignoreComments": true,

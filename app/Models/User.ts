@@ -1,6 +1,6 @@
 import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
-import Encryption from '@ioc:Adonis/Core/Encryption'
 import { DateTime } from 'luxon'
+import Hash from '@ioc:Adonis/Core/Hash'
 
 import Token from './Token'
 
@@ -14,10 +14,7 @@ export default class User extends BaseModel {
   @column()
   public email: string
 
-  @column({
-    columnName: 'password_hash',
-    prepare: (value: string) => Encryption.encrypt(value)
-  })
+  @column({ columnName: 'password_hash' })
   public passwordHash: string
 
   @column.dateTime({ autoCreate: true })
@@ -27,5 +24,17 @@ export default class User extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => Token)
-  public posts: HasMany<typeof Token>
+  public tokens: HasMany<typeof Token>
+
+  // public async loginToken(): Promise<Token> {
+
+  // }
+
+  public async setPassword(password: string): Promise<void> {
+    this.passwordHash = await Hash.hash(password)
+  }
+
+  public async verifyPassword(password: string): Promise<boolean> {
+    return Hash.verify(this.passwordHash, password);
+  }
 }

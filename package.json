@@ -26,7 +26,6 @@
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-adonis": "^1.0.10",
-    "eslint-plugin-import": "^2.20.2",
     "pino-pretty": "^4.0.0",
     "prettier": "^2.0.5",
     "sqlite3": "^4.2.0",

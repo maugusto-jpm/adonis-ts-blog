@@ -9,6 +9,7 @@
   ],
   "extends": "./node_modules/adonis-preset-ts/tsconfig",
   "compilerOptions": {
+    "moduleResolution": "node",
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,

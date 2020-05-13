@@ -10,7 +10,7 @@ export default class CreateTokens extends BaseSchema {
       table.string('token', 512).notNullable()
       table.enum('type', ['login', 'resetPassword']).notNullable()
       table.boolean('revoked').defaultTo(false).notNullable()
-      table.dateTime('valid_until')
+      table.dateTime('valid_until').nullable()
       table.timestamps(true)
     })
   }
