@@ -1,30 +1,20 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import User from 'App/Models/User'
-import Token from 'App/Models/Token'
 
-export default class SessionsController {
-  public async index({ request, response }: HttpContextContract): Promise<any> {
-    const validationSchema = schema.create({
-      email: schema.string({ trim: true }, [
-        rules.email(),
-        rules.unique({ table: 'users', column: 'email' }),
-      ]),
-      password: schema.string({ trim: true }),
-    })
+export default class AuthController {
+  public async login({ request, response, auth }: HttpContextContract): Promise<void> {
+    const email = request.input('email')
+    const password = request.input('password')
+    const rememberUser = !!request.input('remember_me')
+    console.log(request.all());
 
-    const loginDetails = await request.validate({
-      schema: validationSchema,
-    })
+    await auth.attempt(email, password, rememberUser)
 
-    const user = await User.findByOrFail('email', loginDetails.email)
-    if (!await user.verifyPassword(loginDetails.password)) return response.status(401)
+    response.redirect('/dashboard')
+  }
 
-    let token = await Token.findLoginTokenToUser(user)
-    if (token === null) token = await Token.createLoginTokenForUser(user)
+  public async logout({ response, auth }: HttpContextContract): Promise<void> {
+    await auth.logout()
 
-    return {
-      token: token.token
-    }
+    response.redirect('/')
   }
 }

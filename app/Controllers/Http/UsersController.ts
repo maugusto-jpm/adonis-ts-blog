@@ -1,16 +1,16 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import Database from '@ioc:Adonis/Lucid/Database'
+import Database, { TransactionClientContract } from '@ioc:Adonis/Lucid/Database'
 
 import User from "App/Models/User"
 import Token from 'App/Models/Token';
 
 export default class UsersController {
-  public async index(): Promise<any> {
-    return User.all();
+  public async index({ response }: HttpContextContract): Promise<void> {
+    response.json(await User.all())
   }
 
-  public async store({ request }: HttpContextContract): Promise<Token|void> {
+  public async store({ request, response, auth }: HttpContextContract): Promise<void> {
     const validationSchema = schema.create({
       email: schema.string({ trim: true }, [
         rules.email(),
@@ -27,10 +27,10 @@ export default class UsersController {
     const user = new User()
     user.email = userDetails.email
     user.name = userDetails.name
-    user.passwordHash = userDetails.password
+    user.password = userDetails.password
     await user.setPassword(userDetails.password)
 
-    await Database.transaction(async (trx) => {
+    await Database.transaction(async (trx: TransactionClientContract) => {
       user.useTransaction(trx)
       await user.save()
 
@@ -38,7 +38,8 @@ export default class UsersController {
       token.useTransaction(trx)
       await token.save()
 
-      return token;
     })
+    await auth.login(user, false)
+    response.redirect('/dashboard')
   }
 }

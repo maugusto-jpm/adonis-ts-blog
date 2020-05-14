@@ -12,28 +12,28 @@ export enum TokenTypes {
 }
 
 export default class Token extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs: null })
   public id: number
 
-  @column({ columnName: 'user_id' })
+  @column({ columnName: 'user_id', serializeAs: null })
   public userId: number
 
   @column()
   public token: string
 
-  @column()
+  @column({ serializeAs: null })
   public type: TokenTypes
 
-  @column()
+  @column({ serializeAs: null })
   public revoked: boolean
 
-  @column.dateTime({ columnName: 'valid_until' })
+  @column.dateTime({ columnName: 'valid_until', serializeAs: null })
   public validUntil: DateTime
 
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({ autoCreate: true, serializeAs: null })
   public createdAt: DateTime
 
-  @column.dateTime({ autoUpdate: true })
+  @column.dateTime({ autoUpdate: true, serializeAs: null })
   public updatedAt: DateTime
 
   @hasOne(() => User)

@@ -5,7 +5,7 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import Token from './Token'
 
 export default class User extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs: null })
   public id: number
 
   @column()
@@ -14,27 +14,26 @@ export default class User extends BaseModel {
   @column()
   public email: string
 
-  @column({ columnName: 'password_hash' })
-  public passwordHash: string
+  @column({ serializeAs: null })
+  public password: string
 
-  @column.dateTime({ autoCreate: true })
+  @column({ columnName: 'remember_me_token', serializeAs: null })
+  public rememberMeToken: string
+
+  @column.dateTime({ autoCreate: true, serializeAs: null })
   public createdAt: DateTime
 
-  @column.dateTime({ autoUpdate: true })
+  @column.dateTime({ autoUpdate: true, serializeAs: null })
   public updatedAt: DateTime
 
   @hasMany(() => Token)
   public tokens: HasMany<typeof Token>
 
-  // public async loginToken(): Promise<Token> {
-
-  // }
-
   public async setPassword(password: string): Promise<void> {
-    this.passwordHash = await Hash.hash(password)
+    this.password = await Hash.hash(password)
   }
 
   public async verifyPassword(password: string): Promise<boolean> {
-    return Hash.verify(this.passwordHash, password);
+    return Hash.verify(this.password, password);
   }
 }
