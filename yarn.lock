@@ -255,6 +255,13 @@
     luxon "^1.24.1"
     validator "^13.0.0"
 
+"@adonisjs/view@^2.0.0":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@adonisjs/view/-/view-2.0.6.tgz#28aea095243ced1c5545075a49883a46019dce6b"
+  integrity sha512-dXzhLAHLBzF7+Qy8DdaYHmbXxgvfy4j6Pj5gb1fYH3jFPdPqiOLEqeYSkOtG1tHBNXhOkvpEnWKnzCDdNx2z2A==
+  dependencies:
+    edge.js "^3.0.5"
+
 "@arr/every@^1.0.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@arr/every/-/every-1.0.1.tgz#22fe1f8e6355beca6c7c7bde965eb15cf994387b"
@@ -349,6 +356,11 @@
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@poppinss/hooks/-/hooks-1.0.5.tgz#4ebe5142ea4453fa09149c3abfa012d286459817"
   integrity sha512-cMJ+OFx1I4B1O5upwiuVilQZZnq/n5bKmGdTP3btkkLqd6dFZR/0tKAHBFHfC2GuGy8QQmkAVtvBmNBu8w2OOw==
+
+"@poppinss/inspect@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@poppinss/inspect/-/inspect-1.0.1.tgz#b03df9c1204ee72e3b9dbd5c34029c39475fb21d"
+  integrity sha512-kLeEaBSGhlleyYvKc7c9s3uE6xv7cwyulE0EgHf4jU/CL96h0yC4mkdw1wvC1l1PYYQozCGy46FwMBAAMOobCA==
 
 "@poppinss/manager@^2.1.8":
   version "2.1.8"
@@ -764,6 +776,11 @@ astral-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-1.0.0.tgz#6c8c3fb827dd43ee3918f27b82782ab7658a6fd9"
   integrity sha512-+Ryf6g3BKoRc7jfp7ad8tM4TtMiaWvbF/1/sQcZPkkS7ag3D5nMBCe2UfOTONtAkaG0tO0ij3C5Lwmf1EiyjHg==
+
+astring@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/astring/-/astring-1.4.3.tgz#b99d4b0349bc7b28934bb9f03f86ec34d69c3a09"
+  integrity sha512-yJlJU/bmN820vL+cbWShu2YQU87dBP5V7BH2N4wODapRv27A2dZtUD0LgjP9lZENvPe9XRoSyWx+pZR6qKqNBw==
 
 at-least-node@^1.0.0:
   version "1.0.0"
@@ -1313,6 +1330,45 @@ dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+
+edge-error@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/edge-error/-/edge-error-1.0.4.tgz#b165a90fcb7164cd636a7e20d86ecaf7a5cad0e9"
+  integrity sha512-8i/EUKNm2lQRKXHVEo+Nc4hChkB5tu2vg59KdDi6ImkPaRIvY3uHu02Xug9rHEcHa3Z3Xbdh3TSvLBj4tfoeyA==
+
+edge-lexer@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/edge-lexer/-/edge-lexer-3.0.3.tgz#0206eb3511b3e8407bce01b43641f0064909d217"
+  integrity sha512-I5w4wT19jSBaVtB3wRUUHQ5Ztj5Ps1cKTIa237JhzzsNMg2kynC/QJtt+DW0UZe4SE7VxEDnMx5HhQf4bBTv2w==
+  dependencies:
+    edge-error "^1.0.4"
+
+edge-parser@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/edge-parser/-/edge-parser-5.0.6.tgz#957076e6a14348dee23e12cf4cc25076976cf76e"
+  integrity sha512-RnP4IEyTGrQT5A1LCGRQAJoEWPgmnoAPfabh/o0wQ3BdonRoEsVmzj35uYiKd5YJIW9Ui8TzXElJYr3wPeh8cg==
+  dependencies:
+    acorn "^7.1.1"
+    astring "^1.4.3"
+    edge-error "^1.0.4"
+    edge-lexer "^3.0.3"
+    js-stringify "^1.0.2"
+
+edge.js@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/edge.js/-/edge.js-3.0.5.tgz#a044d3d4a249c5fcaa0bc95e646032e9e28b5c74"
+  integrity sha512-P68cpGqYXwNhqg7Cw7ay0Jbf7nKp4dQUC7q+PNQJCzz2vGv1OcCOmlX2iW+k7Dm2Ee8RZ3afW1csG9zfwgmD+Q==
+  dependencies:
+    "@poppinss/inspect" "^1.0.1"
+    edge-error "^1.0.4"
+    edge-lexer "^3.0.3"
+    edge-parser "^5.0.6"
+    he "^1.2.0"
+    lodash.foreach "^4.5.0"
+    lodash.merge "^4.6.2"
+    lodash.size "^4.2.0"
+    macroable "^4.0.4"
+    truncatise "0.0.8"
 
 editorconfig@^0.15.3:
   version "0.15.3"
@@ -2012,6 +2068,11 @@ haye@^2.0.2:
   resolved "https://registry.yarnpkg.com/haye/-/haye-2.0.2.tgz#758043af17e3d5014cece82a3fc23525d4704ff3"
   integrity sha512-C+jeFipAuwLLmQziwQrXuHzUIihDzqoLpCpwDWYFQVCIyqi5ZvC+4YtzawPTmd1tIKo0ULf+4P0Mw8irUdXIpg==
 
+he@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
+  integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
+
 homedir-polyfill@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/homedir-polyfill/-/homedir-polyfill-1.0.3.tgz#743298cef4e5af3e194161fbadcc2151d3a058e8"
@@ -2343,6 +2404,11 @@ joycon@^2.2.5:
   resolved "https://registry.yarnpkg.com/joycon/-/joycon-2.2.5.tgz#8d4cf4cbb2544d7b7583c216fcdfec19f6be1615"
   integrity sha512-YqvUxoOcVPnCp0VU1/56f+iKSdvIRJYPznH22BdXV3xMk75SFXhWeJkZ8C9XxUWt1b5x2X1SxuFygW1U0FmkEQ==
 
+js-stringify@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/js-stringify/-/js-stringify-1.0.2.tgz#1736fddfd9724f28a3682adc6230ae7e4e9679db"
+  integrity sha1-Fzb939lyTyijaCrcYjCufk6Weds=
+
 js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -2493,6 +2559,21 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash.foreach@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.foreach/-/lodash.foreach-4.5.0.tgz#1a6a35eace401280c7f06dddec35165ab27e3e53"
+  integrity sha1-Gmo16s5AEoDH8G3d7DUWWrJ+PlM=
+
+lodash.merge@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
+  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
+lodash.size@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.size/-/lodash.size-4.2.0.tgz#71fe75ed3eabdb2bcb73a1b0b4f51c392ee27b86"
+  integrity sha1-cf517T6r2yvLc6GwtPUcOS7ie4Y=
 
 lodash.toarray@^4.4.0:
   version "4.4.0"
@@ -4011,6 +4092,11 @@ token-types@^2.0.0:
   dependencies:
     "@tokenizer/token" "^0.1.0"
     ieee754 "^1.1.13"
+
+truncatise@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/truncatise/-/truncatise-0.0.8.tgz#06514a0e98c57924f0c2d4ebaf7ff7a5f16ef39a"
+  integrity sha512-cXzueh9pzBCsLzhToB4X4gZCb3KYkrsAcBAX97JnazE74HOl3cpBJYEV7nabHeG/6/WXCU5Yujlde/WPBUwnsg==
 
 tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
