@@ -1,0 +1,47 @@
+.form-container {
+  grid-template-columns: auto;
+  margin: auto;
+  width: 40%;
+  min-width: 300px;
+}
+
+.form-container h1 {
+  margin-bottom: 20px;
+}
+
+.form label {
+  font-weight: bold;
+}
+
+.form label input:not(.form-checkbox) {
+  width: calc(100% - 4em);
+  display: block;
+  padding: .5em;
+  margin-bottom: 20px;
+  border: 2px solid lightgray;
+}
+
+.label-checkbox {
+  display: block;
+}
+
+.form-submit {
+  padding: .5em;
+  background: #455668;
+  border: 0;
+  color: white;
+  font-size: 1.2em;
+  font-family: 'Montserrat';
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/* span {
+  display: block;
+  background: yellow;
+  padding: .3em;
+  margin-bottom: 20px;
+} */

@@ -1,7 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
-export default class PostValidator {
+export default class SignupValidator {
   constructor (private ctx: HttpContextContract) {}
 
   /**
@@ -24,16 +24,23 @@ export default class PostValidator {
    *    ```
    */
   public schema = schema.create({
-    id: schema.number(),
-    title: schema.string({ trim: true }, [
-      rules.required(),
-      rules.minLength(3),
-      rules.maxLength(50),
-    ]),
-    content: schema.string({ trim: true }, [
+    name: schema.string({ trim: true }, [
       rules.required(),
       rules.minLength(5),
-      rules.maxLength(1000),
+      rules.maxLength(200),
+    ]),
+    email: schema.string({ trim: true }, [
+      rules.required(),
+      rules.email(),
+      rules.unique({ table: 'user', column: 'email' }),
+      rules.maxLength(100),
+    ]),
+    password: schema.string({ trim: false }, [
+      rules.required(),
+      rules.confirmed(),
+    ]),
+    rememberMe: schema.boolean([
+      rules.required(),
     ]),
   })
 
@@ -44,7 +51,7 @@ export default class PostValidator {
    * Since, compiling the schema is an expensive operation, you must always cache it by
    * defining a unique cache key. The simplest way is to use the current request route
    * key, which is a combination of the route pattern and HTTP method.
-  */
+   */
   public cacheKey = this.ctx.routeKey
 
   /**
@@ -58,12 +65,18 @@ export default class PostValidator {
    * }
   */
   public messages = {
-    'title.required': 'O título do post é necessário',
-    'title.minLength': 'O título deve ter no mínimo 3 caracteres',
-    'title.maxLength': 'O título deve ter no máximo 50 caracteres',
+    'name.required': 'O nome é necessário',
+    'name.minLength': 'O nome deve ter no mínimo 5 caracteres',
+    'name.maxLength': 'O nome deve ter no máximo 200 caracteres',
 
-    'content.required': 'O conteúdo do post é necessário',
-    'content.minLength': 'O conteúdo deve ter no mínimo 5 caracteres',
-    'content.maxLength': 'O conteúdo deve ter no máximo 1000 caracteres',
+    'email.required': 'O email é necessário',
+    'email.email': 'O e-mail informado não é válido',
+    'email.unique': 'Já existe outro cadastro com este mesmo e-mail',
+    'email.maxLength': 'O e-mail deve ter no máximo 100 caracteres',
+
+    'password.required': 'A senha é necessária',
+    'password.confirmed': 'As senhas não coincidem',
+
+    'rememberMe.required': 'è necessário informar se o usuário deve ser lembrado',
   }
 }

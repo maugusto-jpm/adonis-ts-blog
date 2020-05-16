@@ -1,14 +1,14 @@
 @layout('layouts/main')
 
 @section('title')
-  AdonisJs Blog
+AdonisJs Blog - Home
 @endsection
 
 @section('content')
   <h1 class="content-title">All Posts</h1>
 
   @each(post in posts)
-  <div class="post-container">
+  <div class="block-container">
     <div class="blank"></div>
     <div class="post-info">
       <h3>{{ post.title }}</h3>
