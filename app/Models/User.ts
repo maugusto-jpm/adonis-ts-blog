@@ -2,7 +2,6 @@ import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 
-import Token from './Token'
 import Post from './Post'
 
 export default class User extends BaseModel {
@@ -26,9 +25,6 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoUpdate: true, serializeAs: null })
   public updatedAt: DateTime
-
-  @hasMany(() => Token)
-  public tokens: HasMany<typeof Token>
 
   @hasMany(() => Post)
   public posts: HasMany<typeof Post>
