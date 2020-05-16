@@ -21,10 +21,12 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 // Route.get('/', 'HomeController.index')
-Route.on('/').render('pages/home')
+// Route.on('/').render('pages/home')
+
+Route.get('/', 'PostsController.index');
 
 // Route.get('/users', 'UsersController.index')
-// Route.post('/users', 'UsersController.store')
+Route.post('/users', 'UsersController.store')
 
 // Route.post('/login', 'AuthController.login')
 // Route.get('/logout', 'AuthController.logout')

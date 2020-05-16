@@ -3,6 +3,7 @@ import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 
 import Token from './Token'
+import Post from './Post'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true, serializeAs: null })
@@ -29,8 +30,11 @@ export default class User extends BaseModel {
   @hasMany(() => Token)
   public tokens: HasMany<typeof Token>
 
+  @hasMany(() => Post)
+  public posts: HasMany<typeof Post>
+
   public async setPassword(password: string): Promise<void> {
-    this.password = await Hash.hash(password)
+    this.password = await Hash.make(password)
   }
 
   public async verifyPassword(password: string): Promise<boolean> {
