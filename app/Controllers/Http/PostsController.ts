@@ -13,7 +13,7 @@ export default class PostsController {
       posts: posts.map((post) => post.toJSON()),
       separateTextInParagraphs: (text: string) => text.split(/\r\n|\n|\r/),
       formatDateTime: (datetimeString: string) =>
-        DateTime.fromISO(datetimeString).toFormat("HH:mm dd/MM/yyyy"),
+        DateTime.fromISO(datetimeString).toFormat('HH:mm dd/MM/yyyy'),
     })
   }
 

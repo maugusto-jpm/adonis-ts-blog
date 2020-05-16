@@ -20,9 +20,6 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-// Route.get('/', 'HomeController.index')
-// Route.on('/').render('pages/home')
-
 Route.get('/', 'HomeController.index')
 
 Route.get('/postagens', 'PostsController.index')
@@ -36,11 +33,4 @@ Route.get('/sair', 'UsersController.logout')
 Route.post('/users/store', 'UsersController.store')
 
 // Only to populate Database
-Route.get('/users/populate', 'UsersController.populate')
-
-// Route.get('/users', 'UsersController.index')
-// Route.post('/users', 'UsersController.store')
-
-// Route.post('/login', 'AuthController.login')
-
-// Route.get('/dashboard', 'DashboardController.index').middleware('auth')
+Route.get('/users/populate', 'PopulateController.index')
