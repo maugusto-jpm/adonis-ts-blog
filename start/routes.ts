@@ -20,17 +20,23 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', 'HomeController.index')
+Route.get('/', async ({ response }) => {
+  response.redirect('/postagens')
+})
 
 Route.get('/postagens', 'PostsController.index')
-Route.get('/fazer-uma-postagem', 'PostsController.newPost')
-Route.post('/fazer-uma-postagem', 'PostsController.create').middleware('auth')
+Route.group(() => {
+  Route.on('/nova-postagem').render('pages/create-post')
+  Route.post('/posts/create', 'PostsController.create')
+  Route.get('/sair', 'UsersController.logout')
+}).middleware('auth')
 
-Route.on('/entrar').render('pages/login')
-Route.on('/cadastrar-se').render('pages/signup')
-Route.post('/users/login', 'UsersController.login')
-Route.get('/sair', 'UsersController.logout')
-Route.post('/users/store', 'UsersController.store')
+Route.group(() => {
+  Route.on('/entrar').render('pages/login')
+  Route.on('/cadastrar-se').render('pages/signup')
+  Route.post('/users/login', 'UsersController.login')
+  Route.post('/users/store', 'UsersController.store')
+}).middleware('UserNotLogged')
 
-// Only to populate Database
+// Only to populate Database in development
 Route.get('/users/populate', 'PopulateController.index')

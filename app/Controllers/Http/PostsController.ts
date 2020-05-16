@@ -5,7 +5,7 @@ import { DateTime } from 'luxon'
 import Post from 'App/Models/Post'
 
 export default class PostsController {
-  public async index({ view, session }: HttpContextContract): Promise<string> {
+  public async index({ view }: HttpContextContract): Promise<string> {
     const posts: Post[] = await Post.query().preload('user').orderBy('updated_at', 'desc').limit(20)
 
     return view.render('pages/home', {
@@ -14,20 +14,6 @@ export default class PostsController {
       formatDateTime: (datetimeString: string) =>
         DateTime.fromISO(datetimeString).toFormat('HH:mm dd/MM/yyyy'),
     })
-  }
-
-  public async newPost(
-      {
-        auth,
-        view,
-        response,
-        session,
-      }: HttpContextContract
-    ): Promise<string|void> {
-    if (await auth.check()) return view.render('pages/create-post')
-
-    session.flash('info', 'Entre ou crie uma conta para fazer uma postagem')
-    response.redirect('/entrar')
   }
 
   public async create({ request, response, session, auth }: HttpContextContract): Promise<void> {

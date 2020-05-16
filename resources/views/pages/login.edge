@@ -12,7 +12,7 @@ AdonisJs Blog - Login
 <div class="block-container form-container">
   <h1>Fazer login</h1>
 
-  <form class="form" action="/users/login" method="POST">
+  <form class="form" action="{{ '/users/login' + (request.parsedUrl.search || '') }}" method="POST">
 
     <div class="input-group">
       <label>

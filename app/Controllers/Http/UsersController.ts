@@ -9,16 +9,12 @@ export default class UsersController {
     const userDetails = await request.validate(LoginValidator)
     const rememberMe = !!request.input('remember_me') as boolean
 
-    try {
-      await auth.attempt(userDetails.email, userDetails.password, rememberMe)
+    await auth.attempt(userDetails.email, userDetails.password, rememberMe)
 
-      session.flash('info', `Você fez login como ${userDetails.email}`)
-      response.redirect('/')
-    }
-    catch (error) {
-      session.flash('error', 'Usuário ou senha inválidos')
-      response.redirect('/')
-    }
+    session.flash('info', `Você fez login como ${userDetails.email}`)
+    const { redirectTo } = request.get()
+
+    response.redirect(redirectTo || '/postagens')
   }
 
   public async store({ request, auth, session, response }: HttpContextContract): Promise<void> {
@@ -34,13 +30,13 @@ export default class UsersController {
     auth.login(user, rememberMe)
 
     session.flash('info', `Seja bem-vindo, ${userDetails.name}`)
-    response.redirect('/')
+    response.redirect('/postagens')
   }
 
   public async logout({ response, auth, session }: HttpContextContract): Promise<void> {
     await auth.logout()
 
     session.flash('info', 'Sua sessão foi encerrada')
-    response.redirect('/')
+    response.redirect('/postagens')
   }
 }
