@@ -5,13 +5,12 @@ import LoginValidator from 'App/Validators/LoginValidator'
 import SignupValidator from 'App/Validators/SignupValidator'
 
 export default class UsersController {
-
   public async login({ request, response, auth, session }: HttpContextContract): Promise<void> {
     const userDetails = await request.validate(LoginValidator)
-    console.log(request.all())
+    const rememberMe = !!request.input('remember_me') as boolean
 
     try {
-      await auth.attempt(userDetails.email, userDetails.password)
+      await auth.attempt(userDetails.email, userDetails.password, rememberMe)
 
       session.flash('info', `Você fez login como ${userDetails.email}`)
       response.redirect('/')
@@ -23,9 +22,8 @@ export default class UsersController {
   }
 
   public async store({ request, auth, session, response }: HttpContextContract): Promise<void> {
-    console.log(request.all())
-
     const userDetails = await request.validate(SignupValidator)
+    const rememberMe = !!request.input('remember_me') as boolean
 
     const user = new User()
     user.email = userDetails.email
@@ -33,7 +31,7 @@ export default class UsersController {
     await user.setPassword(userDetails.password)
     await user.save()
 
-    auth.login(user)
+    auth.login(user, rememberMe)
 
     session.flash('info', `Seja bem-vindo, ${userDetails.name}`)
     response.redirect('/')
