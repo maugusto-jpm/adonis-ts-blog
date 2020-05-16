@@ -82,12 +82,36 @@ ul {
   padding: 1em;
   margin-bottom: 10px;
   display: grid;
+  min-height: 150px;
   grid-template-columns: 120px auto;
 }
 
-.blank {
+.user-info {
   width: 100px;
-  height: 100px;
+  height: auto;
   border: 1px solid lightgray;
   border-radius: 5px;
+}
+
+.user-info p {
+  margin: 10px 5px;
+}
+
+/* Warnings and infos */
+
+.alert-spam {
+  display: block;
+  background: yellow;
+  padding: .3em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  width: auto;
+}
+
+.alert-message {
+  background: yellow;
+}
+
+.info-message {
+  background: blue;
 }

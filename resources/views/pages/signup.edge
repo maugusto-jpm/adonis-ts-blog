@@ -12,46 +12,76 @@ AdonisJs Blog - Criar conta
 
 <div class="block-container form-container">
   <h1>Criar uma conta</h1>
-  <form class="form" action="/users/store" method="POST">
-    {{--  {{ csrfField() }}  --}}
+  <form action="/users/store" method="POST">
 
-    <label>
-      Seu nome
-      <input type="text" name="username">
-    </label>
-    {{--  @if(hasErrorFor('username'))
-    <span>
-      {{ getErrorFor('username') }}
-    </span>
-    @endif  --}}
+    <div class="input-group">
+      <label>
+        Seu nome
+        <input type="text" name="name">
+      </label>
 
-    <label>
-      E-mail
-      <input type="email" name="email">
-    </label>
-    {{--  @if(hasErrorFor('email'))
-    <span>
-      {{ getErrorFor('email') }}
-    </span>
-    @endif  --}}
+      @if(!!flashMessages.get('errors.name'))
+      <span class="alert-spam alert-message">
+        @each(error in flashMessages.get('errors.name'))
+          <p>{{ error }}</p>
+          @endeach
+      </span>
+      @endif
+    </div>
 
-    <label>
-      Senha
-      <input type="password" name="password">
-    </label>
-    {{--  @if(hasErrorFor('password'))
-    <span>
-      {{ getErrorFor('password') }}
-    </span>
-    @endif  --}}
-    <label>
-      Confirmação de senha
-      <input type="password" name="password">
-    </label>
+    <div class="input-group">
+      <label>
+        E-mail
+        <input type="email" name="email">
+      </label>
 
-    <label class="label-checkbox">
-      <input type="checkbox" class="form-checkbox"> Lembrar-se de mim
-    </label>
+      @if(!!flashMessages.get('errors.email'))
+      <span class="alert-spam alert-message">
+        @each(error in flashMessages.get('errors.email'))
+          <p>{{ error }}</p>
+          @endeach
+      </span>
+      @endif
+    </div>
+
+    <div class="input-group">
+      <label>
+        Senha
+        <input type="password" name="password">
+      </label>
+
+      @if(!!flashMessages.get('errors.password'))
+      <span class="alert-spam alert-message">
+        @each(error in flashMessages.get('errors.password'))
+          <p>{{ error }}</p>
+          @endeach
+      </span>
+      @endif
+    </div>
+
+    <div class="input-group">
+      <label>
+        Confirmação de senha
+        <input type="password" name="password_confirmation">
+      </label>
+
+      @if(!!flashMessages.get('errors.password_confirmation'))
+      <span class="alert-spam alert-message">
+        @each(error in flashMessages.get('errors.password_confirmation'))
+          <p>{{ error }}</p>
+          @endeach
+      </span>
+      @endif
+    </div>
+
+    {{--  <label class="label-checkbox">
+      <input
+        type="checkbox"
+        class="form-checkbox"
+        name="rememberMe"
+        value="1"
+        checked> Lembrar-se de mim
+    </label>  --}}
 
     <button type="submit" class="form-submit">Criar conta</button>
   </form>

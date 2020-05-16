@@ -1,13 +1,34 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import PostValidator from 'App/Validators/PostValidator'
+import { DateTime } from 'luxon'
+
 import Post from 'App/Models/Post'
-import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class PostsController {
-  public async index({ view }: HttpContextContract): Promise<string> {
-    const posts: Post[] = await Database.from('posts').orderBy('created_at', 'desc').limit(20)
+  public async index({ view, session }: HttpContextContract): Promise<string> {
+    const posts: Post[] = await Post.query().preload('user').orderBy('updated_at', 'desc').limit(20)
 
-    return view.render('pages/home', { posts: posts })
+    session.flash('error', 'Usuário ou senha inválidos')
+    return view.render('pages/home', {
+      posts: posts.map((post) => post.toJSON()),
+      separateTextInParagraphs: (text: string) => text.split(/\r\n|\n|\r/),
+      formatDateTime: (datetimeString: string) =>
+        DateTime.fromISO(datetimeString).toFormat("HH:mm dd/MM/yyyy"),
+    })
+  }
+
+  public async newPost(
+      {
+        auth,
+        view,
+        response,
+        session,
+      }: HttpContextContract
+    ): Promise<string|void> {
+    if (await auth.check()) return view.render('pages/create-post')
+
+    session.flash('info', 'Entre ou crie uma conta para fazer uma postagem')
+    response.redirect('/entrar')
   }
 
   public async create({ request, response, session, auth }: HttpContextContract): Promise<void> {
@@ -20,7 +41,7 @@ export default class PostsController {
     post.userId = user.id
     await post.save()
 
-    session.flash('success', 'Postagem salva com sucesso')
+    session.flash('info', 'Postagem salva')
     response.redirect('/')
   }
 
@@ -32,7 +53,7 @@ export default class PostsController {
     post.title = postInfo.title
     await post.save()
 
-    session.flash('success', 'Postagem editada com sucesso')
+    session.flash('info', 'Postagem alterada')
     response.redirect('/')
   }
 }

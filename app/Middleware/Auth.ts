@@ -12,7 +12,7 @@ export default class AuthMiddleware {
   /**
   * The URL to redirect to when request is Unauthorized
   */
-  protected redirectTo = '/login'
+  protected redirectTo = '/entrar'
 
   /**
    * Authenticates the current HTTP request against a custom set of defined
@@ -22,8 +22,10 @@ export default class AuthMiddleware {
    * of the mentioned guards and that guard will be used by the rest of the code
    * during the current request.
    */
-  // eslint-disable-next-line max-len
-  protected async authenticate(auth: HttpContextContract['auth'], guards: string[]): Promise<boolean> {
+  protected async authenticate(
+      auth: HttpContextContract['auth'],
+      guards: string[]
+    ): Promise<boolean> {
     for (const guard of guards) {
       if (await auth.use(guard).check()) {
         /**
@@ -49,8 +51,10 @@ export default class AuthMiddleware {
   /**
    * Handle request
    */
-  // eslint-disable-next-line max-len
-  public async handle({ auth }: HttpContextContract, next: () => Promise<void>, customGuards: string[]): Promise<void> {
+  public async handle(
+      { auth }: HttpContextContract, next: () => Promise<void>,
+      customGuards: string[]
+    ): Promise<void> {
     /**
      * Uses the user defined guards or the default guard mentioned in
      * the config file

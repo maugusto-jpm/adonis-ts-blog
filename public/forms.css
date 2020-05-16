@@ -1,23 +1,26 @@
 .form-container {
   grid-template-columns: auto;
   margin: auto;
-  width: 40%;
-  min-width: 300px;
+  width: 370px;
 }
 
 .form-container h1 {
   margin-bottom: 20px;
 }
 
-.form label {
+.input-group {
+  width: 350px;
+  margin-bottom: 20px;
+}
+
+.input-group label {
   font-weight: bold;
 }
 
-.form label input:not(.form-checkbox) {
-  width: calc(100% - 4em);
+.input-group label input:not(.form-checkbox) {
+  width: 333px;
   display: block;
   padding: .5em;
-  margin-bottom: 20px;
   border: 2px solid lightgray;
 }
 
@@ -38,10 +41,3 @@
   margin-top: 20px;
   cursor: pointer;
 }
-
-/* span {
-  display: block;
-  background: yellow;
-  padding: .3em;
-  margin-bottom: 20px;
-} */

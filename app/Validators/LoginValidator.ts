@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import { schema } from '@ioc:Adonis/Core/Validator'
 
 export default class LoginValidator {
   constructor (private ctx: HttpContextContract) {}
@@ -24,19 +24,9 @@ export default class LoginValidator {
    *    ```
    */
   public schema = schema.create({
-    email: schema.string({ trim: true }, [
-      rules.required(),
-      rules.email(),
-      rules.unique({ table: 'user', column: 'email' }),
-      rules.maxLength(100),
-    ]),
-    password: schema.string({ trim: false }, [
-      rules.required(),
-      rules.confirmed(),
-    ]),
-    rememberMe: schema.boolean([
-      rules.required(),
-    ]),
+    email: schema.string({ trim: true }),
+    password: schema.string({ trim: false }),
+    // rememberMe: schema.boolean(),
   })
 
   /**
@@ -68,6 +58,6 @@ export default class LoginValidator {
     'password.required': 'A senha é necessária',
     'password.confirmed': 'As senhas não coincidem',
 
-    'rememberMe.required': 'è necessário informar se o usuário deve ser lembrado',
+    // 'rememberMe.required': 'è necessário informar se o usuário deve ser lembrado',
   }
 }

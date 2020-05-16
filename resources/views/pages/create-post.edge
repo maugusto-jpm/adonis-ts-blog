@@ -5,13 +5,17 @@
 @endsection
 
 @section('title')
-AdonisJs Blog - Login
+AdonisJs Blog - Criar postagem
 @endsection
 
 @section('content')
 <div class="block-container form-container">
-  <h1>Fazer login</h1>
-  
+  <h1>Criar postagem</h1>
+  @if(!!flashMessages.get('info'))
+  <span class="alert-spam info-message">
+    <p>{{ flashMessages.get('info') }}</p>
+  </span>
+  @endif
   <form class="form" action="/users/login" method="POST">
 
     <div class="input-group">

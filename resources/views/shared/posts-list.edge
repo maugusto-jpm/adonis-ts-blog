@@ -1,0 +1,25 @@
+@if(!!posts.length)
+<h1 class="content-title">All Posts</h1>
+@each(post in posts)
+<div class="block-container">
+  <div class="user-info">
+    @if(!!request.ctx.auth.user && request.ctx.auth.user.id == post.user_id)
+    <p>Seu post</p>
+    @else
+    <p>{{ post.user.name }}</p>
+    <p>{{ formatDateTime(post.updated_at) }}</p>
+    @endif
+  </div>
+  <div class="post-info">
+    <h3>{{ post.title }}</h3>
+    @each(paragraph in separateTextInParagraphs(post.content))
+    <p>{{ paragraph }}</p>
+    @endeach
+  </div>
+</div>
+@endeach
+@else
+<h1 class="content-title">Seja o primeiro a fazer uma postagem</h1>
+@endif
+
+{{ inspect(posts) }}

@@ -23,16 +23,24 @@ import Route from '@ioc:Adonis/Core/Route'
 // Route.get('/', 'HomeController.index')
 // Route.on('/').render('pages/home')
 
-Route.get('/', 'PostsController.index')
+Route.get('/', 'HomeController.index')
 
-Route.on('/login').render('pages/login')
-Route.on('/signup').render('pages/signup')
+Route.get('/postagens', 'PostsController.index')
+Route.get('/fazer-uma-postagem', 'PostsController.newPost')
+Route.post('/fazer-uma-postagem', 'PostsController.create').middleware('auth')
+
+Route.on('/entrar').render('pages/login')
+Route.on('/cadastrar-se').render('pages/signup')
+Route.post('/users/login', 'UsersController.login')
+Route.get('/sair', 'UsersController.logout')
 Route.post('/users/store', 'UsersController.store')
+
+// Only to populate Database
+Route.get('/users/populate', 'UsersController.populate')
 
 // Route.get('/users', 'UsersController.index')
 // Route.post('/users', 'UsersController.store')
 
 // Route.post('/login', 'AuthController.login')
-// Route.get('/logout', 'AuthController.logout')
 
 // Route.get('/dashboard', 'DashboardController.index').middleware('auth')

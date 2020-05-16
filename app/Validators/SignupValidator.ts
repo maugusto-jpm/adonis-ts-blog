@@ -25,23 +25,18 @@ export default class SignupValidator {
    */
   public schema = schema.create({
     name: schema.string({ trim: true }, [
-      rules.required(),
       rules.minLength(5),
       rules.maxLength(200),
     ]),
     email: schema.string({ trim: true }, [
-      rules.required(),
       rules.email(),
-      rules.unique({ table: 'user', column: 'email' }),
+      rules.unique({ table: 'users', column: 'email' }),
       rules.maxLength(100),
     ]),
     password: schema.string({ trim: false }, [
-      rules.required(),
       rules.confirmed(),
     ]),
-    rememberMe: schema.boolean([
-      rules.required(),
-    ]),
+    // rememberMe: schema.boolean(),
   })
 
   /**
@@ -75,8 +70,8 @@ export default class SignupValidator {
     'email.maxLength': 'O e-mail deve ter no máximo 100 caracteres',
 
     'password.required': 'A senha é necessária',
-    'password.confirmed': 'As senhas não coincidem',
+    'password_confirmation.confirmed': 'As senhas não coincidem',
 
-    'rememberMe.required': 'è necessário informar se o usuário deve ser lembrado',
+    'rememberMe.required': 'É necessário informar se o usuário deve ser lembrado',
   }
 }

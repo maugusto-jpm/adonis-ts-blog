@@ -2,15 +2,17 @@
   <a href="/" id="logo">Adonis.Js Blog</a>
   <nav class="nav-header-links">
     <div class="header-links">
-      @if(user)
+      @if(!!request.ctx.auth.user)
+      <p> Olá, {{ request.ctx.auth.user.name }}! </p>
       <ul>
-        <li><a href="/">Posts</a></li>
+        <li><a href="/fazer-uma-postagem">Fazer uma postagem</a></li>
+        <li><a href="/sair">Sair</a></li>
       </ul>
-      <p> Hello {{ user.name }}! </p>
       @else
         <ul>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/signup">Signup</a></li>
+          <li><a href="/fazer-uma-postagem">Fazer uma postagem</a></li>
+          <li><a href="/entrar">Entrar</a></li>
+          <li><a href="/cadastrar-se">Cadastrar-se</a></li>
         </ul>
       @endif
     </div>

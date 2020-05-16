@@ -15,7 +15,35 @@
   @include('shared/header')
 
   <div class="container">
+    @if(!!flashMessages.get('info'))
+    <span class="alert-spam info-message">
+      <p>{{ flashMessages.get('info') }}</p>
+    </span>
+    @endif
+    @if(!!flashMessages.get('error'))
+    <span class="alert-spam error-message">
+      <p>{{ flashMessages.get('error') }}</p>
+    </span>
+    @endif
+
+    {{ inspect(flashMessages) }}
+
     @!section('content')
   </div>
+  {{--  {{ inspect(flashMessages) }}  --}}
+  {{--  <script type="text/javascript">
+    document.ready = () => {
+      document.getElementsByClassName("form-checkbox")[0].onchange = (item) => {
+        console.log(item.target.checked);
+        console.log(item.target.value);
+
+        if (!!item.target.checked) {
+          item.target.value = '1'
+        } else {
+          item.target.value = '0'
+        }
+      }
+    }
+  </script>  --}}
 </body>
 </html>
