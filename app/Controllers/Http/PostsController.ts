@@ -8,7 +8,6 @@ export default class PostsController {
   public async index({ view, session }: HttpContextContract): Promise<string> {
     const posts: Post[] = await Post.query().preload('user').orderBy('updated_at', 'desc').limit(20)
 
-    session.flash('error', 'Usuário ou senha inválidos')
     return view.render('pages/home', {
       posts: posts.map((post) => post.toJSON()),
       separateTextInParagraphs: (text: string) => text.split(/\r\n|\n|\r/),

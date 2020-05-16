@@ -97,21 +97,28 @@ ul {
   margin: 10px 5px;
 }
 
+.edit-post-link {
+  text-decoration: none;
+  padding: 10px;
+  display: inline-block;
+}
+
 /* Warnings and infos */
 
 .alert-spam {
   display: block;
-  background: yellow;
   padding: .3em;
   font-weight: bold;
   margin-bottom: 20px;
   width: auto;
+  border-radius: 5px;
+  border: 2px solid lightgray;
 }
 
 .alert-message {
-  background: yellow;
+  background: lightpink;
 }
 
 .info-message {
-  background: blue;
+  background: lightblue;
 }

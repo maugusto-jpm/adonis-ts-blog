@@ -5,9 +5,11 @@
   <div class="user-info">
     @if(!!request.ctx.auth.user && request.ctx.auth.user.id == post.user_id)
     <p>Seu post</p>
+    <a href="/entrar"><img src="/edit-icon.svg" height="20" width="20"alt="Edit">Editar</a>
     @else
     <p>{{ post.user.name }}</p>
     <p>{{ formatDateTime(post.updated_at) }}</p>
+    <a class="edit-post-link" href="/entrar"><img src="/edit-icon.svg" height="20" width="20"alt="Edit"> Editar</a>
     @endif
   </div>
   <div class="post-info">

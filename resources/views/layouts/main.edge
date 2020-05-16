@@ -21,12 +21,12 @@
     </span>
     @endif
     @if(!!flashMessages.get('error'))
-    <span class="alert-spam error-message">
+    <span class="alert-spam alert-message">
       <p>{{ flashMessages.get('error') }}</p>
     </span>
     @endif
 
-    {{ inspect(flashMessages) }}
+    {{--  {{ inspect(flashMessages) }}  --}}
 
     @!section('content')
   </div>
