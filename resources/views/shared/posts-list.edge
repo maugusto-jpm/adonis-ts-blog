@@ -14,7 +14,7 @@
   </div>
   <div class="post-info">
     <h3>{{ post.title }}</h3>
-    @each(paragraph in separateTextInParagraphs(post.content))
+    @each(paragraph in splitTextInParagraphs(post.content))
     <p>{{ paragraph }}</p>
     @endeach
   </div>

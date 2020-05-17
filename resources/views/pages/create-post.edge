@@ -13,6 +13,7 @@ AdonisJs Blog - Criar postagem
   <h1>Criar postagem</h1>
 
   <form class="form" action="/posts/create" method="POST">
+    {{ csrfField() }}
 
     <div class="input-group">
       <label>

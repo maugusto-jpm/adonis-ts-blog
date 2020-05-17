@@ -15,6 +15,7 @@
     "@adonisjs/fold": "^6.0.0",
     "@adonisjs/lucid": "^8.1.0",
     "@adonisjs/session": "^3.0.0",
+    "@adonisjs/shield": "^3.0.3",
     "@adonisjs/view": "^2.0.0",
     "faker": "^4.1.0",
     "proxy-addr": "^2.0.6",

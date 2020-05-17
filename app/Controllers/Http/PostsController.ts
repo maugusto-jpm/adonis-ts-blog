@@ -10,7 +10,7 @@ export default class PostsController {
 
     return view.render('pages/home', {
       posts: posts.map((post) => post.toJSON()),
-      separateTextInParagraphs: (text: string) => text.split(/\r\n|\n|\r/),
+      splitTextInParagraphs: (text: string) => text.split(/\r\n|\n|\r/),
       formatDateTime: (datetimeString: string) =>
         DateTime.fromISO(datetimeString).toFormat('HH:mm dd/MM/yyyy'),
     })

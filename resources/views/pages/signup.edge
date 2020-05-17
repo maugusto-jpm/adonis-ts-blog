@@ -13,6 +13,7 @@ AdonisJs Blog - Criar conta
 <div class="block-container form-container">
   <h1>Criar uma conta</h1>
   <form action="/users/store" method="POST">
+    {{ csrfField() }}
 
     <div class="input-group">
       <label>
