@@ -5,8 +5,8 @@
   "scripts": {
     "build": "node ace build",
     "start": "node ace serve --watch",
-    "lint": "eslint './**/*[.ts|.js]' --ignore-path ./.gitignore",
-    "lint:fix": "eslint --fix './**/*[.ts|.js]' --ignore-path ./.gitignore"
+    "lint": "eslint './**/*[.ts|.js]'",
+    "lint:fix": "eslint --fix './**/*[.ts|.js]'"
   },
   "dependencies": {
     "@adonisjs/ace": "^6.0.0",

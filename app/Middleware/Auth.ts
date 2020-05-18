@@ -23,9 +23,9 @@ export default class AuthMiddleware {
    * during the current request.
    */
   protected async authenticate(
-      auth: HttpContextContract['auth'],
-      guards: string[]
-    ): Promise<boolean> {
+    auth: HttpContextContract['auth'],
+    guards: string[]
+  ): Promise<boolean> {
     for (const guard of guards) {
       if (await auth.use(guard).check()) {
         /**
@@ -52,9 +52,9 @@ export default class AuthMiddleware {
    * Handle request
    */
   public async handle(
-      { auth }: HttpContextContract, next: () => Promise<void>,
-      customGuards: string[]
-    ): Promise<void> {
+    { auth }: HttpContextContract, next: () => Promise<void>,
+    customGuards: string[]
+  ): Promise<void> {
     /**
      * Uses the user defined guards or the default guard mentioned in
      * the config file

@@ -17,7 +17,8 @@ import Logger from '@ioc:Adonis/Core/Logger'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
-import CredentialsInvalidException from './CredentialsInvalidException';
+import UnauthorizedAccessHandler from './Handlers/UnauthorizedAccessHandler';
+import CredentialsInvalidHandler from './Handlers/CredentialsInvalidHandler';
 
 export default class ExceptionHandler extends HttpExceptionHandler {
   constructor() {
@@ -26,10 +27,12 @@ export default class ExceptionHandler extends HttpExceptionHandler {
 
   public async handle(error: any, ctx: HttpContextContract): Promise<any> {
     switch (error.code) {
-      case 'E_UNAUTHORIZED_ACCESS':
-        new CredentialsInvalidException(error.message).handle(error, ctx)
-        break
-      default: return super.handle(error, ctx)
+    case 'E_UNAUTHORIZED_ACCESS':
+      return await UnauthorizedAccessHandler(error, ctx)
+    case 'E_INVALID_AUTH_UID':
+    case 'E_INVALID_AUTH_PASSWORD':
+      return await CredentialsInvalidHandler(error, ctx)
+    default: return super.handle(error, ctx)
     }
   }
 }

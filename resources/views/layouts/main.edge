@@ -14,7 +14,7 @@
   </title>
 </head>
 <body>
-  @include('shared/header')
+  @include('layouts/partials/header')
 
   <div class="container">
     @if(!!flashMessages.get('info'))
@@ -27,8 +27,6 @@
       <p>{{ flashMessages.get('error') }}</p>
     </span>
     @endif
-
-    {{--  {{ inspect(state) }}  --}}
 
     @!section('content')
   </div>

@@ -37,6 +37,7 @@
     "/tmp",
     "/.DS_STORE",
     "/coverage",
-    "/.nyc_output"
+    "/.nyc_output",
+    "/public"
   ]
 }

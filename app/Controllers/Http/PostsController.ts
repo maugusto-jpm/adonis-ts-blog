@@ -26,7 +26,7 @@ export default class PostsController {
     post.userId = user.id
     await post.save()
 
-    session.flash('info', 'Postagem salva')
+    session.flash({ info: 'Postagem salva' })
     response.redirect('/')
   }
 
@@ -38,7 +38,7 @@ export default class PostsController {
     post.title = postInfo.title
     await post.save()
 
-    session.flash('info', 'Postagem alterada')
+    session.flash({ info: 'Postagem alterada' })
     response.redirect('/')
   }
 }

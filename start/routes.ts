@@ -24,19 +24,23 @@ Route.get('/', async ({ response }) => {
   response.redirect('/postagens')
 })
 
+// Those routes should be only accessible
+// when you are logged in
 Route.get('/postagens', 'PostsController.index')
 Route.group(() => {
   Route.on('/nova-postagem').render('pages/create-post')
   Route.post('/posts/create', 'PostsController.create')
-  Route.get('/sair', 'UsersController.logout')
+  Route.get('/sair', 'SessionController.logout')
 }).middleware('auth')
 
+// Those routes should be only accessible
+// when you are not logged in
 Route.group(() => {
   Route.on('/entrar').render('pages/login')
   Route.on('/cadastrar-se').render('pages/signup')
-  Route.post('/users/login', 'UsersController.login')
+  Route.post('/users/login', 'SessionController.login')
   Route.post('/users/store', 'UsersController.store')
-}).middleware('UserNotLogged')
+}).middleware('guest')
 
 // Only to populate Database in development
 Route.get('/users/populate', 'PopulateController.index')
