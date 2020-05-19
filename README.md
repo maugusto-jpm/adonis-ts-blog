@@ -3,7 +3,7 @@
 This is an example of an web application made with [AdonisJS](https://adonisjs.com/) in Typescript.
 It is used [version 5](https://preview.adonisjs.com/) of the framework.
 
-![home preview](https://user-images.githubusercontent.com/25934051/82269440-13606180-9948-11ea-9ba2-c9d5cb19e824.png)
+![home preview](https://user-images.githubusercontent.com/25934051/82270824-689e7200-994c-11ea-9109-f54da384cfe8.png)
 
 It is configured with:
 
@@ -14,6 +14,7 @@ It is configured with:
 
 ## 📝 Prerequisite
 
+- [NodeJs](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/)
 
 ## 🏁 Getting Started
