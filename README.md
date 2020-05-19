@@ -3,6 +3,8 @@
 This is an example of an web application made with [AdonisJS](https://adonisjs.com/) in Typescript.
 It is used [version 5](https://preview.adonisjs.com/) of the framework.
 
+Based on [Adonis Blog Demo](https://github.com/AdonisCommunity/adonis-blog-demo) made in Javascript
+
 ![home preview](https://user-images.githubusercontent.com/25934051/82270824-689e7200-994c-11ea-9109-f54da384cfe8.png)
 
 It is configured with:
