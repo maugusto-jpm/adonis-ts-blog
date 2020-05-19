@@ -1,25 +1,28 @@
 @if(!!posts.length)
-<h1 class="content-title">All Posts</h1>
-@each(post in posts)
-<div class="block-container">
-  <div class="user-info">
-    @if(!!request.ctx.auth.user && request.ctx.auth.user.id == post.user_id)
-    <p>Seu post</p>
-    <a href="/entrar"><img src="/images/edit-icon.svg" height="20" width="20"alt="Edit">Editar</a>
-    @else
-    <p>{{ post.user.name }}</p>
-    <p>{{ formatDateTime(post.updated_at) }}</p>
-    <a class="edit-post-link" href="/entrar"><img src="/images/edit-icon.svg" height="20" width="20"alt="Edit"> Editar</a>
-    @endif
-  </div>
-  <div class="post-info">
-    <h3>{{ post.title }}</h3>
-    @each(paragraph in splitTextInParagraphs(post.content))
-    <p>{{ paragraph }}</p>
-    @endeach
-  </div>
-</div>
-@endeach
+  <h1 class="content-title">Postagens</h1>
+  <p>Mostrando {{ showing }} de {{ total }} postagens</p>
+  @each(post in posts)
+    <div class="block-container">
+      <div class="user-info">
+        @if(!!request.ctx.auth.user && request.ctx.auth.user.id == post.user_id)
+          <p>Seu post</p>
+          <a href="/entrar"><img src="/images/edit-icon.svg" height="20" width="20"alt="Edit">Editar</a>
+        @else
+          <p>{{ post.user.name }}</p>
+          <p>{{ formatDateTime(post.updated_at) }}</p>
+          <a class="edit-post-link" href="/entrar"><img src="/images/edit-icon.svg" height="20" width="20"alt="Edit"> Editar</a>
+        @endif
+      </div>
+      <div class="post-info">
+        <h3>{{ post.title }}</h3>
+        @each(paragraph in splitTextInParagraphs(post.content))
+          <p>{{ paragraph }}</p>
+        @endeach
+      </div>
+    </div>
+  @endeach
+
+  @include('pages/partials/posts-list-pagination.edge')
 @else
-<h1 class="content-title">Seja o primeiro a fazer uma postagem</h1>
+  <h1 class="content-title">Seja o primeiro a fazer uma postagem</h1>
 @endif

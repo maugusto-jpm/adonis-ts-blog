@@ -3,11 +3,11 @@
   <nav class="nav-header-links">
     <div class="header-links">
       @if(!!request.ctx.auth.user)
-      <p> Olá, {{ request.ctx.auth.user.name }}! </p>
-      <ul>
-        <li><a href="/nova-postagem">Fazer uma postagem</a></li>
-        <li><a href="/sair">Sair</a></li>
-      </ul>
+        <p> Olá, {{ request.ctx.auth.user.name }}! </p>
+        <ul>
+          <li><a href="/nova-postagem">Fazer uma postagem</a></li>
+          <li><a href="/sair">Sair</a></li>
+        </ul>
       @else
         <ul>
           <li><a href="/nova-postagem">Fazer uma postagem</a></li>

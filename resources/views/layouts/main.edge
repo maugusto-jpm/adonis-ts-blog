@@ -14,21 +14,25 @@
   </title>
 </head>
 <body>
+
   @include('layouts/partials/header')
 
   <div class="container">
+
     @if(!!flashMessages.get('info'))
-    <span class="alert-spam info-message">
-      <p>{{ flashMessages.get('info') }}</p>
-    </span>
+      <span class="alert-spam info-message">
+        <p>{{ flashMessages.get('info') }}</p>
+      </span>
     @endif
+
     @if(!!flashMessages.get('error'))
-    <span class="alert-spam alert-message">
-      <p>{{ flashMessages.get('error') }}</p>
-    </span>
+      <span class="alert-spam alert-message">
+        <p>{{ flashMessages.get('error') }}</p>
+      </span>
     @endif
 
     @!section('content')
+
   </div>
 </body>
 </html>
