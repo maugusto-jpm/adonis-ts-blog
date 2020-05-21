@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {{ csrfMeta() }}
   <link href="/images/favicon.ico" rel="icon" type="image/ico">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
   <link href="/styles/main-style.css" rel="stylesheet"/>
@@ -12,12 +13,13 @@
   <title>
     @!section('title')
   </title>
+
 </head>
 <body>
-
   @include('layouts/partials/header')
 
   <div class="container">
+    {{ inspect(csrfToken) }}
 
     @if(!!flashMessages.get('info'))
       <span class="alert-spam info-message">

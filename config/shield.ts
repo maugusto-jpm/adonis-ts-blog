@@ -50,16 +50,17 @@ export const csp: ShieldConfig['csp'] = {
     fontSrc: [
       "'self'",
       'fonts.googleapis.com',
-      'fonts.gstatic.com'
+      'fonts.gstatic.com',
     ],
     scriptSrc: [
       "'self'",
-      '@nonce',
     ],
     styleSrc: [
       "'self'",
-      '@nonce',
       'fonts.googleapis.com',
+
+      // Uncomment for inspect styling in development
+      "'unsafe-inline'",
     ],
     imgSrc: [
       "'self'",
