@@ -59,7 +59,9 @@ export const csp: ShieldConfig['csp'] = {
       "'self'",
       'fonts.googleapis.com',
 
-      // Uncomment for inspect styling in development
+      // Uncomment for debug objects in view
+      // See https://preview.adonisjs.com/guides/views/debugging
+      // and https://github.com/inspect-js/object-inspect
       "'unsafe-inline'",
     ],
     imgSrc: [
