@@ -87,9 +87,10 @@ body {
   height: auto;
   border: 1px solid lightgray;
   border-radius: 5px;
+  font-size: 13px;
 }
 
-.user-info p {
+.user-info p, .user-info a {
   margin: 10px 5px;
 }
 

@@ -49,23 +49,64 @@ export default class PostsController {
 
     const post = new Post()
     post.title = postInfo.title
-    post.title = postInfo.title
+    post.content = postInfo.content
     post.userId = user.id
     await post.save()
 
     session.flash({ info: 'Postagem salva' })
-    response.redirect('/')
+    response.redirect('/postagens')
   }
 
-  public async update({ request, response, session }: HttpContextContract): Promise<void> {
-    const postInfo = await request.validate(PostValidator)
+  public async renderUpdate(
+    {
+      view,
+      auth,
+      params,
+    }: HttpContextContract): Promise<string> {
+    const user = auth.user
+    const postId = params.id
+    const post = await Post
+      .query()
+      .where('user_id', user?.id || '')
+      .where('id', postId)
+      .firstOrFail()
 
-    const post = await Post.findOrFail(postInfo.id)
+    return view.render('pages/update-post', { post })
+  }
+
+  public async update(
+    {
+      request,
+      response,
+      session,
+      auth,
+      params,
+    }: HttpContextContract): Promise<void> {
+    console.log('Entrou');
+    const postInfo = await request.validate(PostValidator)
+    console.log(postInfo);
+
+    const user = auth.user
+    console.log(user);
+
+    const postId = params.id
+    console.log(postId);
+
+    const post = await Post
+      .query()
+      .where('user_id', user?.id || '')
+      .where('id', postId)
+      .firstOrFail()
+
+    console.log(post);
+
+
     post.title = postInfo.title
-    post.title = postInfo.title
+    post.content = postInfo.content
+    post.modified = true
     await post.save()
 
     session.flash({ info: 'Postagem alterada' })
-    response.redirect('/')
+    response.redirect('/postagens')
   }
 }

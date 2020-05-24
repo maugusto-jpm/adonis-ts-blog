@@ -8,7 +8,7 @@ import User from 'App/Models/User'
 export default class PopulateController {
   public async index({ response }: HttpContextContract): Promise<void> {
     console.log('Creating users and posts')
-    const userLoopArray = Array.from(Array(10))
+    const userLoopArray = Array.from(Array(5))
 
     // Users creation
 
@@ -31,7 +31,7 @@ export default class PopulateController {
 
       // Posts creation for this user
 
-      const postArray = Array.from(Array(20))
+      const postArray = Array.from(Array(50))
 
       const postPromises = postArray.map(async () => {
         console.log('Creating post')

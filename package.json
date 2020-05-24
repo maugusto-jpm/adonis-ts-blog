@@ -1,11 +1,11 @@
 {
   "name": "adonis-ts-blog",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "node ace build",
     "start": "node ace serve --watch",
-    "run_migrations": "node ace migration:run",
+    "db:migrate": "node ace migration:run",
     "test": "echo Jest not configured yet",
     "lint": "eslint './**/*[.ts|.js]'",
     "lint:fix": "eslint --fix './**/*[.ts|.js]'"

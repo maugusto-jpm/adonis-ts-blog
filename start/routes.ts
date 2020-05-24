@@ -30,6 +30,8 @@ Route.get('/postagens', 'PostsController.index')
 Route.group(() => {
   Route.on('/nova-postagem').render('pages/create-post')
   Route.post('/posts/create', 'PostsController.create')
+  Route.get('/posts/:id/update', 'PostsController.renderUpdate')
+  Route.post('/posts/:id/update', 'PostsController.update')
   Route.get('/sair', 'SessionController.logout')
 }).middleware('auth')
 

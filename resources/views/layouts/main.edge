@@ -19,7 +19,6 @@
   @include('layouts/partials/header')
 
   <div class="container">
-    {{ inspect(csrfToken) }}
 
     @if(!!flashMessages.get('info'))
       <span class="alert-spam info-message">

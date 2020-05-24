@@ -62,7 +62,7 @@ export const csp: ShieldConfig['csp'] = {
       // Uncomment for debug objects in view
       // See https://preview.adonisjs.com/guides/views/debugging
       // and https://github.com/inspect-js/object-inspect
-      //"'unsafe-inline'",
+      "'unsafe-inline'",
     ],
     imgSrc: [
       "'self'",
