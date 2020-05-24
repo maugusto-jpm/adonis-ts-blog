@@ -82,15 +82,9 @@ export default class PostsController {
       auth,
       params,
     }: HttpContextContract): Promise<void> {
-    console.log('Entrou');
     const postInfo = await request.validate(PostValidator)
-    console.log(postInfo);
-
     const user = auth.user
-    console.log(user);
-
     const postId = params.id
-    console.log(postId);
 
     const post = await Post
       .query()
@@ -98,15 +92,33 @@ export default class PostsController {
       .where('id', postId)
       .firstOrFail()
 
-    console.log(post);
-
-
     post.title = postInfo.title
     post.content = postInfo.content
     post.modified = true
     await post.save()
 
     session.flash({ info: 'Postagem alterada' })
+    response.redirect('/postagens')
+  }
+
+  public async delete(
+    {
+      response,
+      session,
+      auth,
+      params,
+    }: HttpContextContract): Promise<void> {
+    const user = auth.user
+    const postId = params.id
+    const post = await Post
+      .query()
+      .where('user_id', user?.id || '')
+      .where('id', postId)
+      .firstOrFail()
+
+    await post.delete()
+
+    session.flash({ info: 'Postagem apagada' })
     response.redirect('/postagens')
   }
 }

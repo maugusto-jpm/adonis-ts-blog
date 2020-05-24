@@ -91,7 +91,19 @@ body {
 }
 
 .user-info p, .user-info a {
+  display: block;
   margin: 10px 5px;
+}
+
+.user-info a {
+  width: 90px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: blue;
+}
+
+.user-info a img {
+  padding-right: 5px;
 }
 
 .edit-post-link {

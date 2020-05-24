@@ -32,6 +32,7 @@ Route.group(() => {
   Route.post('/posts/create', 'PostsController.create')
   Route.get('/posts/:id/update', 'PostsController.renderUpdate')
   Route.post('/posts/:id/update', 'PostsController.update')
+  Route.get('/posts/:id/delete', 'PostsController.delete')
   Route.get('/sair', 'SessionController.logout')
 }).middleware('auth')
 
