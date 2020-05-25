@@ -26,9 +26,6 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   }
 
   public async handle(error: any, ctx: HttpContextContract): Promise<any> {
-    this.logger.error(error.code)
-    console.log(error.code)
-
     switch (error.code) {
     case 'E_UNAUTHORIZED_ACCESS':
       return await UnauthorizedAccessHandler(error, ctx)

@@ -1,7 +1,7 @@
 # Dependencies
 /node_modules
 
-# compiled output
+# Compiled output
 /build
 /dist
 /tmp
@@ -20,6 +20,7 @@ lerna-debug.log*
 
 # Git conflit files
 *.orig
+*~
 
 # Test output
 /coverage

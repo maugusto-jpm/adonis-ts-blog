@@ -23,10 +23,10 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async ({ response }) => {
   response.redirect('/postagens')
 })
+Route.get('/postagens', 'PostsController.index')
 
 // Those routes should be only accessible
 // when you are logged in
-Route.get('/postagens', 'PostsController.index')
 Route.group(() => {
   Route.on('/nova-postagem').render('pages/create-post')
   Route.post('/posts/create', 'PostsController.create')
@@ -46,4 +46,6 @@ Route.group(() => {
 }).middleware('guest')
 
 // Only to populate Database in development
+// Will be replaced when AdonisJs add support for seeds & factories
+// https://trello.com/c/kelnalMH
 Route.get('/users/populate', 'PopulateController.index')
