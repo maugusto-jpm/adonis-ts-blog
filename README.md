@@ -10,7 +10,7 @@ Based on [Adonis Blog Demo](https://github.com/AdonisCommunity/adonis-blog-demo)
 It is configured with:
 
 - [SQLite](https://www.sqlite.org/index.html) (for development and tests)
-- [AdonisJS Shield](https://preview.adonisjs.com/releases/shield/version-2) to protect from protects against common web attacks
+- [AdonisJS Shield](https://preview.adonisjs.com/releases/shield/version-2) to protect against common web attacks
 - [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) as code formatters
 - [Youch!](https://github.com/poppinss/youch) as web pretty error reporting (for development)
 
@@ -37,15 +37,7 @@ Open another terminal on same folder an run
 yarn run_migrations
 ```
 
-## 🔧 Running the tests
-
-Run in bash:
-
-```bash
-yarn test
-```
-
-### 🎈 Running coding style tests
+### 🎈 Running coding style linting
 
 Run in bash:
 
@@ -64,3 +56,18 @@ yarn lint:fix
 In file `.env` is all the needed environment variables of project. Is recommended to store in it only values used on development or testing.
 
 To production publishing, is recommended to ignore it and use another way to load environment variables outside project directory or use [AdonisJs default convention](https://adonisjs.com/docs/4.0/configuration-and-env#_environment_variables)
+
+## Building a production package
+
+The production build is a package optimized to increase the performance of the machines that will run it. Includes front-end and back-end.
+To build production package, run in bash:
+
+```bash
+yarn build
+```
+
+An folder called `build` will be created with package inside. To run in production, run in bash:
+
+```bash
+node server.js
+```
